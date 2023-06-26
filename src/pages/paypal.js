@@ -31,7 +31,7 @@ const PaypalPage = () => {
           {
             amount: {
               currency_code: "USD",
-              value: totalAmount, // Use the retrieved totalAmount value
+              value: totalAmount,
             },
           },
         ],
@@ -41,7 +41,7 @@ const PaypalPage = () => {
     const onApprove = (data, actions) => {
       return actions.order.capture().then((details) => {
         setPaymentStatus(details.status);
-        const purchaseId = generatePurchaseId(); // Generate a purchase ID here
+        const purchaseId = generatePurchaseId();
         router.push(`/success?id=${purchaseId}`);
       });
     };

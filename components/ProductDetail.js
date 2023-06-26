@@ -22,8 +22,10 @@ import { CartContext } from "../src/Context/CartContext";
 import Breadcrumbs from "./Breadcrumbs";
 
 export default function ProductDetail({ product }) {
-  console.log(product)
-  const [mainImage, setMainImage] = useState(`https://www.getfromnepal.com/${product.image}`);
+  console.log(product);
+  const [mainImage, setMainImage] = useState(
+    `https://www.getfromnepal.com/${product.image}`
+  );
 
   const handleImageClick = (imageSrc) => {
     setMainImage(imageSrc);
@@ -39,23 +41,27 @@ export default function ProductDetail({ product }) {
   function decreaseThisProduct(id) {
     removeProduct(id);
   }
-  const breadCrumbs=[
-    {name:"Home",url:'/'},
-    {name: `${product.pname}...`,url:`/product/${product.id}`},
-  ]
+  const breadCrumbs = [
+    { name: "Home", url: "/" },
+    { name: `${product.pname}`, url: `/product/${product.id}` },
+  ];
   return (
     <>
       <div className="pd-container">
         <div className="product-detail">
-          <Breadcrumbs breadCrumbs={breadCrumbs}/>
           <div className="container">
+            <Breadcrumbs breadCrumbs={breadCrumbs} />
             <div className="row">
               <div className="pro-det-part">
                 <div className="image-part">
                   <div className="small-images">
                     <div
                       className="imj"
-                      onClick={() => handleImageClick(`https://www.getfromnepal.com/${product.image_3}`)}
+                      onClick={() =>
+                        handleImageClick(
+                          `https://www.getfromnepal.com/${product.image_3}`
+                        )
+                      }
                     >
                       <Image
                         src={`https://www.getfromnepal.com/${product.image_3}`}
@@ -66,7 +72,11 @@ export default function ProductDetail({ product }) {
                     </div>
                     <div
                       className="imj"
-                      onClick={() => handleImageClick(`https://www.getfromnepal.com/${product.image}`)}
+                      onClick={() =>
+                        handleImageClick(
+                          `https://www.getfromnepal.com/${product.image}`
+                        )
+                      }
                     >
                       <Image
                         src={`https://www.getfromnepal.com/${product.image}`}
@@ -77,7 +87,11 @@ export default function ProductDetail({ product }) {
                     </div>
                     <div
                       className="imj"
-                      onClick={() => handleImageClick(`https://www.getfromnepal.com/${product.image_2}`)}
+                      onClick={() =>
+                        handleImageClick(
+                          `https://www.getfromnepal.com/${product.image_2}`
+                        )
+                      }
                     >
                       <Image
                         src={`https://www.getfromnepal.com/${product.image_2}`}
@@ -89,17 +103,16 @@ export default function ProductDetail({ product }) {
                   </div>
                   <div className="main-image">
                     <div className="product-image">
-                      
                       <ReactImageMagnify
                         {...{
                           smallImage: {
                             alt: "",
-                            src: (mainImage),
-                            width:462,
-                            height:490,
+                            src: mainImage,
+                            width: 462,
+                            height: 490,
                           },
                           largeImage: {
-                            src: (mainImage),
+                            src: mainImage,
                             width: 1200,
                             height: 1200,
                           },
@@ -137,7 +150,9 @@ export default function ProductDetail({ product }) {
                     <div>
                       <h3 className="product-price">
                         {`$${product.selling_price}`}
-                        <del className="productOldPrice">${product.discounted_price}</del>
+                        <del className="productOldPrice">
+                          ${product.discounted_price}
+                        </del>
                       </h3>
                       <span className="productAvailable">In Stock</span>
                     </div>

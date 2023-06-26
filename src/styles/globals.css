@@ -117,3 +117,19 @@ ul {
     right: 0.5rem;
    
   } */
+.login-form {
+    background: #fff;
+    padding: 3.5rem 4rem 3.1rem 3.1rem;
+    box-shadow: 0rem 0.01rem 2rem 0rem rgba(13,12,13,0.2);
+    width: 20rem;
+} 
+.account-details{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login{
+  display: flex;
+  justify-content: center;
+}
+

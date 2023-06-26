@@ -15,6 +15,8 @@ import {
 } from "react-icons/fa";
 import Breadcrumbs from "./Breadcrumbs";
 import { CartContext } from "../src/Context/CartContext";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Store = ({ products, categories,brands }) => {
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -85,6 +87,11 @@ const Store = ({ products, categories,brands }) => {
   function addToCart(productId) {
     addProduct(productId);
   }
+  const notify = () => toast("Added to Cart");
+  const addToCartAndNotify = (id) => {
+    addToCart(id);
+    notify();
+  };
 
   return (
     <div className="section">
@@ -245,9 +252,10 @@ const Store = ({ products, categories,brands }) => {
                   </li>
                 </ul>
               </div>
+              <ToastContainer />
               <div className="product-row">
-                {paginatedProducts.map((product, index) => (
-                  <div className="product-grid" key={index}>
+                {paginatedProducts.map((product) => (
+                  <div className="product-grid" key={product.id}>
                     <div className="product">
                       <div className="product-img">
                         <Image
@@ -309,7 +317,7 @@ const Store = ({ products, categories,brands }) => {
                         </div>
                       </div>
                       <div className="add-to-cart">
-                        <button onClick={() => addToCart(product.id)} className="add-to-cart-btn">
+                        <button onClick={() => addToCartAndNotify(product.id)} className="add-to-cart-btn">
                           <i>
                             <FaShoppingCart />
                           </i>

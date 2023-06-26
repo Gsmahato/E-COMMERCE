@@ -9,6 +9,8 @@ import {
   FaShoppingCart
 } from "react-icons/fa";
 import { CartContext } from "../src/Context/CartContext";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProPage = ({ product}) => {
 
@@ -16,6 +18,11 @@ const ProPage = ({ product}) => {
   function addToCart() {
     addProduct(product.id);
   }
+  const notify = () => toast("Added to Cart");
+  const addToCartAndNotify = (id) => {
+    addToCart(id);
+    notify();
+  };
 
 
   return (
@@ -69,7 +76,7 @@ const ProPage = ({ product}) => {
         </div>
 
         <div className="add-to-cart">
-          <button onClick={addToCart} className="add-to-cart-btn" tabindex="-1">
+          <button onClick={() => addToCartAndNotify(product.id)} className="add-to-cart-btn" tabindex="-1">
             <i>
               <FaShoppingCart />
             </i>
@@ -78,6 +85,7 @@ const ProPage = ({ product}) => {
         </div>
       </div>
     </>
+    
   );
 };
 export default ProPage;

@@ -162,12 +162,12 @@ const SearchBar = () => {
             <div className="suggestions-container" ref={containerRef}>
               {suggestions.length > 0 ? (
                 <ul>
-                  {suggestions.map((suggestion, index) => (
+                  {suggestions.map((suggestion) => (
                     <li
-                      key={index}
+                      key={suggestion.id}
                       onClick={() => handleSuggestionClick(suggestion)}
                       className={`suggestion-item ${
-                        index === selectedSuggestion ? "selected" : ""
+                        suggestion === selectedSuggestion ? "selected" : ""
                       }`}
                     >
                       {suggestion}

@@ -57,7 +57,18 @@ const Checkout = () => {
   };
 
   const handlePlaceOrder = () => {
-    if (selectedPayment && isTermsChecked) {
+    if (
+      firstName &&
+      lastName &&
+      email &&
+      address &&
+      city &&
+      country &&
+      zipCode &&
+      telephone &&
+      selectedPayment &&
+      isTermsChecked
+    ) {
       if (selectedPayment === "paypal") {
         const queryParams = querystring.stringify({ totalAmount: total });
         router.push(`/paypal?${queryParams}`);
@@ -68,17 +79,57 @@ const Checkout = () => {
         const queryParams = querystring.stringify({ totalAmount: total });
         router.push(`/mastercard?${queryParams}`);
       }
+    } else {
+      setIsFormFilled(false);
     }
   };
 
-  // useEffect(() => {
-  //   if (session) {
-  //     const { user } = session;
-  //     setUserData(user);
-  //   } else {
-  //     setUserData(null);
-  //   }
-  // }, [session]);
+  const { data: session } = useSession();
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    if (session) {
+      setEmail(session.user.email);
+    }
+  }, [session]);
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [country, setCountry] = useState("");
+  const [zipCode, setZipCode] = useState("");
+  const [telephone, setTelephone] = useState("");
+  const [isFormFilled, setIsFormFilled] = useState(true);
+
+  const handleFirstNameChange = (e) => {
+    setFirstName(e.target.value);
+  };
+
+  const handleLastNameChange = (e) => {
+    setLastName(e.target.value);
+  };
+  const handleAddressChange = (e) => {
+    setAddress(e.target.value);
+  };
+
+  const handleCityChange = (e) => {
+    setCity(e.target.value);
+  };
+  const handleCountryChange = (e) => {
+    setCountry(e.target.value);
+  };
+
+  const handleZipCodeChange = (e) => {
+    setZipCode(e.target.value);
+  };
+  const handleTelephoneChange = (e) => {
+    setTelephone(e.target.value);
+  };
 
   return (
     <div className="container">
@@ -95,7 +146,8 @@ const Checkout = () => {
                 type="text"
                 name="first-name"
                 placeholder="First Name"
-                value={userData?.name || ""}
+                value={firstName}
+                onChange={handleFirstNameChange}
               />
             </div>
             <div className="form-group">
@@ -104,6 +156,8 @@ const Checkout = () => {
                 type="text"
                 name="last-name"
                 placeholder="Last Name"
+                value={lastName}
+                onChange={handleLastNameChange}
               />
             </div>
             <div className="form-group">
@@ -112,7 +166,8 @@ const Checkout = () => {
                 type="email"
                 name="email"
                 placeholder="Email"
-                value={userData?.email || ""}
+                value={email}
+                onChange={handleEmailChange}
               />
             </div>
             <div className="form-group">
@@ -121,6 +176,8 @@ const Checkout = () => {
                 type="text"
                 name="address"
                 placeholder="Address"
+                value={address}
+                onChange={handleAddressChange}
               />
             </div>
             <div className="form-group">
@@ -129,6 +186,8 @@ const Checkout = () => {
                 type="text"
                 name="city"
                 placeholder="City"
+                value={city}
+                onChange={handleCityChange}
               />
             </div>
             <div className="form-group">
@@ -137,6 +196,8 @@ const Checkout = () => {
                 type="text"
                 name="country"
                 placeholder="Country"
+                value={country}
+                onChange={handleCountryChange}
               />
             </div>
             <div className="form-group">
@@ -145,6 +206,8 @@ const Checkout = () => {
                 type="text"
                 name="zip-code"
                 placeholder="ZIP Code"
+                value={zipCode}
+                onChange={handleZipCodeChange}
               />
             </div>
             <div className="form-group">
@@ -153,36 +216,15 @@ const Checkout = () => {
                 type="tel"
                 name="tel"
                 placeholder="Telephone"
+                value={telephone}
+                onChange={handleTelephoneChange}
               />
             </div>
-            <div className="form-group">
-              <div className="input-checkbox">
-                <input
-                  type="checkbox"
-                  id="create-account"
-                  checked={createAccountChecked}
-                  onChange={handleCreateAccountChange}
-                />
-                <label htmlFor="create-account">
-                  <span></span>
-                  Create Account?
-                </label>
-                {createAccountChecked && (
-                  <div className="caption">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididunt.
-                    </p>
-                    <input
-                      className="billing-input"
-                      type="password"
-                      name="password"
-                      placeholder="Enter Your Password"
-                    />
-                  </div>
-                )}
-              </div>
-            </div>
+            {!isFormFilled && (
+              <p className="warning">
+                Please fill out all the required fields.
+              </p>
+            )}
           </div>
 
           <div className="shiping-details">

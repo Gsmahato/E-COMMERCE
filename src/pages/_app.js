@@ -16,13 +16,15 @@ import { SessionProvider } from "next-auth/react";
 
 import { CartContextProvider } from "../Context/CartContext";
 
+
+
 import Header from "../../components/Header";
 import TopHeader from "../../components/TopHeader";
 import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
 import NewsLetter from "../../components/NewsLetter";
 
-export default function App({ session,Component, pageProps }) {
+export default function App({ session, Component, pageProps }) {
   return (
     <>
       <SessionProvider session={session}>

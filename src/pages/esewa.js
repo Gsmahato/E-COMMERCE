@@ -9,7 +9,7 @@ const Esewa = () => {
       pdc: 0,
       txAmt: 1,
       tAmt: 101,
-      pid: "ee2c3ca1-696b-4cc5-a6be-2chndha",
+      pid: "ee2c3ca1-696b-4cc5-a6be-2chndg",
       scd: "EPAYTEST",
       su: "http://localhost:3000/success",
       fu: "http://localhost:3000/checkout",

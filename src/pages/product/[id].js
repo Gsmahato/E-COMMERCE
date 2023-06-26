@@ -9,7 +9,7 @@ export default function Product({ product }) {
   return (
     <div>
       {product.map((product) => (
-        <ProductDetail product={product} key={id} />
+        <ProductDetail product={product} key={product.id} />
       ))}
     </div>
   );

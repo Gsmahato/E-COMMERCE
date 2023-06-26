@@ -19,9 +19,13 @@ export const CartContextProvider = ({ children }) => {
  
   const deleteFromCart = (id) => {
     setCartProducts((prevCart) =>
-      prevCart.filter((product) => product && product.id !== id)
+      prevCart.filter((product) => product.id !== id)
     );
   };
+
+  // const deleteFromCart = (productId) => {
+  //   setCartProducts((prev) => prev.filter((product) => product.id !== productId));
+  // };
   // function deleteProduct(productId) {
   //   dispatch({ type: "DELETE_PRODUCT", payload: productId });
   // }
@@ -49,6 +53,7 @@ export const CartContextProvider = ({ children }) => {
     </CartContext.Provider>
   );
 };
+
 
 
 

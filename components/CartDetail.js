@@ -12,7 +12,7 @@ import axios from "axios";
 import Link from "next/link";
 import { useSession, signIn } from "next-auth/react";
 
-const CartDetails = ({product}) => {
+const CartDetails = ({ product }) => {
   const { cartProducts, addProduct, removeProduct, deleteFromCart } =
     useContext(CartContext);
   const [products, setProducts] = useState([]);
@@ -36,10 +36,11 @@ const CartDetails = ({product}) => {
   }
 
   const handleDelete = () => {
-    deleteFromCart();
+    deleteFromCart(product);
   };
-  
-
+  // const handleDelete = (productId) => {
+  //   deleteFromCart(productId);
+  // };
 
   let total = 0;
   for (const id of cartProducts) {
@@ -78,7 +79,7 @@ const CartDetails = ({product}) => {
             </thead>
             <tbody>
               {products.map((product) => (
-                <tr key={product.id} >
+                <tr key={product.id}>
                   <td>
                     <div className="media">
                       <div className="d-flex">
@@ -152,38 +153,40 @@ const CartDetails = ({product}) => {
               </tr>
             </tbody>
           </table>
-          <hr className="h-line" />
-          <div className="check-container">
-            <div className="checkout">
-              <Link href="/">
-                <button className="check-button">
-                  <i>
-                    <FaShoppingBag />
-                  </i>
-                  Continue Shopping
-                </button>
-              </Link>
-            </div>
-            <div className="check-out">
-              {session ? (
-                <Link href="/checkout">
+            <div className="check-container">
+              <div className="checkout">
+                <Link href="/">
                   <button className="check-button">
+                    <i>
+                      <FaShoppingBag />
+                    </i>
+                    Continue Shopping
+                  </button>
+                </Link>
+              </div>
+              <div className="check-out">
+                {session ? (
+                  <Link href="/checkout">
+                    <button className="check-button">
+                      <i>
+                        <FaCheck />
+                      </i>
+                      PROCEED TO CHECKOUT
+                    </button>
+                  </Link>
+                ) : (
+                  <button className="check-button" onClick={() => signIn()}>
                     <i>
                       <FaCheck />
                     </i>
-                    PROCEED TO CHECKOUT
+                    LOGIN TO CHECKOUT
                   </button>
-                </Link>
-              ) : (
-                <button className="check-button" onClick={() => signIn()}>
-                  <i>
-                    <FaCheck />
-                  </i>
-                  LOGIN TO CHECKOUT
-                </button>
-              )}
+                )}
+              </div>
             </div>
-          </div>
+            
+          <hr className="h-line" />
+          
         </div>
       )}
     </div>

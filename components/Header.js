@@ -180,20 +180,19 @@ const Header = () => {
                           >
                             View Cart
                           </Link>
-                          <Link href="/checkout" onClick={handleCheckout}>
-                            Checkout
-                          </Link>
-                          {/* {session ? (
-                            <Link href="/checkout">
-                              <button className="primary-btn">
-                                PROCEED TO CHECKOUT
-                              </button>
+                          {cartProducts.length === 0 ? (
+                            <Link href="/">
+                              Home
+                            </Link>
+                          ) : session ? (
+                            <Link href="/checkout" onClick={handleCheckout}>
+                              Checkout
                             </Link>
                           ) : (
-                            <button className="primary-btn" onClick={() => signIn()}>
-                              LOGIN TO CHECKOUT
-                            </button>
-                          )} */}
+                            <Link href="/login">
+                              Login
+                            </Link>
+                          )}
                         </div>
                       </div>
                     )}

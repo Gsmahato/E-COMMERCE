@@ -251,9 +251,15 @@
     }
       @media (max-width:560px ){
         .react-multi-carousel-track li{
-          margin-left: 0.25rem;
+          margin-left: 0.7rem;
         }
+        
       
         
       }
+      /* @media (max-width:340px ){
+        .react-multi-carousel-track {
+          margin-left: 1.5rem;
+        }
+      } */
     

@@ -9,6 +9,8 @@ import {
 } from "react-icons/fa";
 import { CartContext } from "../src/Context/CartContext";
 import Image from "next/image";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SearchResults = () => {
   const router = useRouter();
@@ -42,6 +44,11 @@ const SearchResults = () => {
   function addToCart(productId) {
     addProduct(productId);
   }
+  const notify = () => toast("Added to Cart");
+  const addToCartAndNotify = (id) => {
+    addToCart(id);
+    notify();
+  };
 
   return (
     <div className="search-results">
@@ -67,6 +74,8 @@ const SearchResults = () => {
                         <span className="new">NEW</span>
                       </div> */}
                     </div>
+                    <ToastContainer />
+
                     <div className="product-body">
                       <p className="product-category">{result.category}</p>
                       <h3 className="product-name">
@@ -116,7 +125,7 @@ const SearchResults = () => {
                     </div>
                     <div className="add-to-cart">
                       <button
-                        onClick={() => addToCart(result.id)}
+                        onClick={() => addToCartAndNotify(result.id)}
                         className="add-to-cart-btn"
                       >
                         <i>
