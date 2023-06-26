@@ -1,7 +1,7 @@
 {
   "name": "my-app",
   "version": "0.1.0",
-  "homepage":"https://github.com/Gsmahato/E-COMMERCE",
+  "homepage":"https://gsmahato.github.io/E-COMMERCE/",
   "private": true,
   "scripts": {
     "dev": "next dev",
